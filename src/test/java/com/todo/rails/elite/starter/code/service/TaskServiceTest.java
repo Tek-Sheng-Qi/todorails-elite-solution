@@ -13,7 +13,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-// TODO 11: write Unit Tests for Services. Use JUnit to write tests for TaskService methods like addTask(), updateTask(), and deleteTask().
+
 public class TaskServiceTest {
     @Mock
     private TaskRepository taskRepository;
@@ -39,14 +39,6 @@ public class TaskServiceTest {
         assertNotNull(result);
         assertEquals(sampleTask.getTitle(), result.getTitle());
         verify(taskRepository, times(1)).save(sampleTask);
-//        when(taskRepository.findByTitle(sampleTask.getTitle())).thenReturn(Optional.empty());
-//        when(taskRepository.save(sampleTask)).thenReturn(sampleTask);
-//
-//        Task result = taskService.addTask(sampleTask);
-//
-//        assertNotNull(result);
-//        assertEquals(sampleTask.getTitle(), result.getTitle());
-//        verify(taskRepository, times(1)).save(sampleTask);
     }
 
     @Test
@@ -55,12 +47,6 @@ public class TaskServiceTest {
         Exception exception = assertThrows(RuntimeException.class, () -> taskService.addTask(sampleTask));
         assertEquals("Task already exists", exception.getMessage());
         verify(taskRepository, never()).save(sampleTask);
-//        when(taskRepository.findByTitle(sampleTask.getTitle())).thenReturn(Optional.of(sampleTask));
-//
-//        Exception exception = assertThrows(RuntimeException.class, () -> taskService.addTask(sampleTask));
-//
-//        assertEquals("Task already exists", exception.getMessage());
-//        verify(taskRepository, never()).save(sampleTask);
     }
 
     @Test
@@ -68,7 +54,7 @@ public class TaskServiceTest {
 
         sampleTask.setId(1L);
         Task updatedTask = new Task("Updated Task", "Updated description", true, LocalDate.now());
-
+        updatedTask.setId(1L);
         when(taskRepository.findById(1L)).thenReturn(Optional.of(sampleTask));
         when(taskRepository.save(any(Task.class))).thenReturn(updatedTask);
 

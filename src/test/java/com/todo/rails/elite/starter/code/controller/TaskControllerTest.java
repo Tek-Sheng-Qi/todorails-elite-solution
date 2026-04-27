@@ -39,8 +39,7 @@ class TaskControllerTests {
 
     @BeforeEach
     void setUp() {
-        // TODO: Initialize mocks
-        // TODO: Initialize sampleTask object
+
         mockMvc = MockMvcBuilders.standaloneSetup(taskController).build();
         sampleTask = new Task("Some title", "Some description", false, LocalDate.now());
     }
@@ -48,14 +47,11 @@ class TaskControllerTests {
     @Test
     void getAllTasks_Success() throws Exception {
         when(taskService.getAllTasks()).thenReturn(List.of(sampleTask));
-        // TODO: Mock taskService.getAllTasks() to return a list
         mockMvc.perform(get("/api/tasks/all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].title").value("Some title"))
                 .andExpect(jsonPath("$[0].description").value("Some description"));
-        // TODO: Perform GET request to /api/tasks/all
-        // TODO: Assert response status and JSON content
     }
 
     @Test
@@ -93,6 +89,4 @@ class TaskControllerTests {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
     }
-
-    // TODO: Add more test cases for createTask, updateTask, deleteTask
 }

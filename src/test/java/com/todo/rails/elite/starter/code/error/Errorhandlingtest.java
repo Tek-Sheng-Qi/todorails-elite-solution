@@ -26,7 +26,6 @@ class Errorhandlingtest {
 
     @BeforeEach
     void setUp() {
-        // TODO: Initialize mocks
         MockitoAnnotations.openMocks(this);
     }
 
@@ -35,8 +34,6 @@ class Errorhandlingtest {
         when(taskRepository.findById(1L)).thenReturn(Optional.empty());
         Exception exception = assertThrows(RuntimeException.class, () -> taskService.getTaskById(1L));
         assertEquals("Task not found", exception.getMessage());
-        // TODO: Mock repository to simulate task not found
-        // TODO: Assert that appropriate exception is thrown
     }
 
     @Test
@@ -70,6 +67,4 @@ class Errorhandlingtest {
         Exception exception = assertThrows(RuntimeException.class, () -> taskService.deleteTask(sampleTask));
         assertEquals("Task not found", exception.getMessage());
     }
-
-    // TODO: Add more tests for other error scenarios
 }
