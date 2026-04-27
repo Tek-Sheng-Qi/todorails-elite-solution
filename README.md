@@ -38,4 +38,4 @@ This app is deployed on Railway with a managed MySQL instance.
 All sensitive configuration is handled via environment variables.
 
 ## Live Demo
-🔗 [ToDoRails Elite Solution](https://your-railway-url.up.railway.app)
+🔗 [ToDoRails Elite Solution](todorails-elite-solution-production.up.railway.app)
